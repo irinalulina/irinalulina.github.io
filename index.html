@@ -42,7 +42,8 @@
       border: 2px solid dodgerblue;
       color: white;
     }
-    #inst p{
+
+    #inst p {
       padding: 5px;
     }
   </style>
@@ -85,7 +86,7 @@
   <div class="container">
     <div class="row mt-1">
       <div class="col d-flex flex-column align-items-center">
-        <button class="mbtn" id="inst-btn" >Show instructions</button>
+        <button class="mbtn" id="inst-btn">Show instructions</button>
         <div class="mt-2" id="inst" style="display: none; border: 1px solid lightgrey; border-radius: 15px">
           <p>This is game for dyslexics, that helps them to improve their skills in perceiving text</p>
           <p>In the top you can see your results and some statisctics about your skills</p>
@@ -93,7 +94,8 @@
           <p>When the game loads press "I'm ready to start"</p>
           <p>Read the word carefully and press enter or "I'm ready to write"</p>
           <p>Write the word. If you are not able to reproduce it, press enter or click the button</p>
-          <p>When the round ends, you will be able to see result screen, press "save results" to save your results it in blockchain(it
+          <p>When the round ends, you will be able to see result screen, press "save results" to save your results it in
+            blockchain(it
             costs about 0.000001 dollar)</p>
         </div>
       </div>
@@ -448,6 +450,7 @@
 
     $(document).on('click', "#save-results", function () {
       $('#save-results').hide();
+      $startGame.hide();
       var totalWords = $('#results').data('total-words');
       var correctWords = $('#results').data('correct-words');
       var forgottenWords = $('#results').data('forgotten-words');
@@ -485,20 +488,27 @@
                   if (parseInt(status) === 1) {
                     getUserResults();
                     $savingResults.hide();
+                    $startGame.show();
                     clearInterval(inter)
                   }
                   else if (parseInt(status) === 0) {
-                    console.error("Can't save words")
+                    console.error("Can't save words");
+                    getUserResults();
+                    $savingResults.hide();
+                    $startGame.show();
+                    clearInterval(inter)
                   }
 
 
                 });
               }, 1000,)
+              
 
             })
             .catch(function (err) {
               console.log(err);
               $('#save-results').show();
+              $startGame.show();
             });
           checkAuth();
         }
