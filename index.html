@@ -1,590 +1,606 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>dyslexic_vue_webpack</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+    <meta charset="utf-8">
+    <title>dyslexic_vue_webpack</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
 
-  <style>
-    html {
-      height: 100%;
-    }
+    <style>
+        html {
+            height: 100%;
+        }
 
-    body {
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.0) !important;
+        body {
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.0) !important;
 
-    }
+        }
 
-    .mbtn {
-      display: flex;
-      padding: 10px 30px 10px 30px;
-      font-size: 20px;
-      border: 2px solid #38B5ED;
-      border-radius: 10px;
+        .mbtn {
+            display: flex;
+            padding: 10px 30px 10px 30px;
+            font-size: 20px;
+            border: 2px solid #38B5ED;
+            border-radius: 10px;
 
-    }
+        }
 
-    .mbtn:hover {
-      background-color: dodgerblue;
-      border: 2px solid dodgerblue;
-      color: white;
-    }
+        .mbtn:hover {
+            background-color: dodgerblue;
+            border: 2px solid dodgerblue;
+            color: white;
+        }
 
-    .divider {
-      height: 1px;
-      overflow: hidden;
-      background-color: #e0e0e0
-    }
+        .divider {
+            height: 1px;
+            overflow: hidden;
+            background-color: #e0e0e0
+        }
 
-    #inst-btn.active {
-      background-color: dodgerblue;
-      border: 2px solid dodgerblue;
-      color: white;
-    }
+        #inst-btn.active {
+            background-color: dodgerblue;
+            border: 2px solid dodgerblue;
+            color: white;
+        }
 
-    #inst p {
-      padding: 5px;
-    }
-  </style>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-          integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-          crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-          integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-          crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-          integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-          crossorigin="anonymous"></script>
+        #inst p {
+            padding: 5px;
+        }
+    </style>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
 </head>
 <body>
 <div id="login-block" style="display: none; height: 100%; width: 100%"
      class="row justify-content-center align-items-center">
-  <div class="container">
-    <div class="row justify-content-center">
-      <form id="login-form" style="display: flex;flex-direction: column" class="col-12 col-md-6 col-lg-4 column">
-        <div class="form-group row">
-          <label for="login-file">Upload your file</label>
-          <input type="file" id="login-file" required class="form-control-file">
+    <div class="container">
+        <div class="row justify-content-center">
+            <form id="login-form" style="display: flex;flex-direction: column" class="col-12 col-md-6 col-lg-4 column">
+                <div class="form-group row">
+                    <label for="login-file">Upload your wallet json</label>
+                    <input type="file" id="login-file" required class="form-control-file">
+                </div>
+
+                <div class="row mt-2">
+                    <button type="submit" id="login-btn" class="mbtn btn-lg">Login</button>
+                </div>
+            </form>
         </div>
-        <div class="from-group row">
-          <label for="login-password">Your wallet password</label>
-          <input type="password" id="login-password" required class="form-control">
-          <small class="form-text text-muted">(to make save your training results) we won't share this data</small>
-        </div>
-        <div class="row justify-content-center mt-2">
-          <button type="submit" id="login-btn" class="mbtn btn-lg">Login</button>
-        </div>
-      </form>
+        <p id="login-error"></p>
     </div>
-    <p id="login-error"></p>
-  </div>
 </div>
 <div id="app-block" style="display:none">
-  <div class="container">
-    <div class="row mt-1">
-      <div class="col d-flex flex-column align-items-center">
-        <button class="mbtn" id="inst-btn">Show instructions</button>
-        <div class="mt-2" id="inst" style="display: none; border: 1px solid lightgrey; border-radius: 15px">
-          <p>This is game for dyslexics, that helps them to improve their skills in perceiving text</p>
-          <p>In the top you can see your results and some statisctics about your skills</p>
-          <p>Input a number from 1 to 10 in the input field and press "Start a new round" button to start the game</p>
-          <p>When the game loads press "I'm ready to start"</p>
-          <p>Read the word carefully and press enter or "I'm ready to write"</p>
-          <p>Write the word. If you are not able to reproduce it, press enter or click the button</p>
-          <p>When the round ends, you will be able to see result screen, press "save results" to save your results it in
-            blockchain(it
-            costs about 0.000001 dollar)</p>
+    <div class="container">
+        <div class="row mt-1">
+            <div class="col d-flex flex-column align-items-center">
+                <button class="mbtn" id="inst-btn">Show instructions</button>
+                <div class="mt-2" id="inst" style="display: none; border: 1px solid lightgrey; border-radius: 15px">
+                    <p>This is game for dyslexics, that helps them to improve their skills in perceiving text</p>
+                    <p>In the top you can see your results and some statisctics about your skills</p>
+                    <p>Input a number from 1 to 10 in the input field and press "Start a new round" button to start the
+                        game</p>
+                    <p>When the game loads press "I'm ready to start"</p>
+                    <p>Read the word carefully and press enter or "I'm ready to write"</p>
+                    <p>Write the word. If you are not able to reproduce it, press enter or click the button</p>
+                    <p>When the round ends, you will be able to see result screen, press "save results" to save your
+                        results it in
+                        blockchain(it
+                        costs about 0.000001 dollar)</p>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-    <div class="divider"></div>
-    <div class="row justify-content-between m-2 align-item-center">
-      <div id="user-info" class="col d-flex align-items-center">Hi</div>
-      <div class="row justify-content-end align-items-end">
-        <button id="logout-btn" class="mbtn">Logout</button>
-      </div>
-    </div>
-
-    <div class="divider mt-1 mb-1"></div>
-    <div id="saving-results" style="display: none" class="text-center">Saving results
-      <div class="row justify-content-center">
-        <div class="preloader-wrapper big active " id="saving-preloader">
-          <div class="spinner-layer spinner-blue">
-            <div class="circle-clipper left">
-              <div class="circle"></div>
+        <div class="divider"></div>
+        <div class="row justify-content-between m-2 align-item-center">
+            <div id="user-info" class="col d-flex align-items-center">Hi</div>
+            <div class="row justify-content-end align-items-end">
+                <button id="logout-btn" class="mbtn">Logout</button>
             </div>
-            <div class="gap-patch">
-              <div class="circle"></div>
-            </div>
-            <div class="circle-clipper right">
-              <div class="circle"></div>
-            </div>
-          </div>
-
-          <div class="spinner-layer spinner-red">
-            <div class="circle-clipper left">
-              <div class="circle"></div>
-            </div>
-            <div class="gap-patch">
-              <div class="circle"></div>
-            </div>
-            <div class="circle-clipper right">
-              <div class="circle"></div>
-            </div>
-          </div>
-
-          <div class="spinner-layer spinner-yellow">
-            <div class="circle-clipper left">
-              <div class="circle"></div>
-            </div>
-            <div class="gap-patch">
-              <div class="circle"></div>
-            </div>
-            <div class="circle-clipper right">
-              <div class="circle"></div>
-            </div>
-          </div>
-
-          <div class="spinner-layer spinner-green">
-            <div class="circle-clipper left">
-              <div class="circle"></div>
-            </div>
-            <div class="gap-patch">
-              <div class="circle"></div>
-            </div>
-            <div class="circle-clipper right">
-              <div class="circle"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="divider mt-1 mb-1"></div>
-    </div>
-    <div id="game-results" style="display: none" class="row justify-content-center">
-      <div class="col">
-        <div class="row justify-content-center mt-2 ">
-          <div class="preloader-wrapper big active ">
-            <div class="spinner-layer spinner-blue">
-              <div class="circle-clipper left">
-                <div class="circle"></div>
-              </div>
-              <div class="gap-patch">
-                <div class="circle"></div>
-              </div>
-              <div class="circle-clipper right">
-                <div class="circle"></div>
-              </div>
-            </div>
-
-            <div class="spinner-layer spinner-red">
-              <div class="circle-clipper left">
-                <div class="circle"></div>
-              </div>
-              <div class="gap-patch">
-                <div class="circle"></div>
-              </div>
-              <div class="circle-clipper right">
-                <div class="circle"></div>
-              </div>
-            </div>
-
-            <div class="spinner-layer spinner-yellow">
-              <div class="circle-clipper left">
-                <div class="circle"></div>
-              </div>
-              <div class="gap-patch">
-                <div class="circle"></div>
-              </div>
-              <div class="circle-clipper right">
-                <div class="circle"></div>
-              </div>
-            </div>
-
-            <div class="spinner-layer spinner-green">
-              <div class="circle-clipper left">
-                <div class="circle"></div>
-              </div>
-              <div class="gap-patch">
-                <div class="circle"></div>
-              </div>
-              <div class="circle-clipper right">
-                <div class="circle"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="divider mt-1 mb-1"></div>
-    <div class="row justify-content-center">
-      <div class="col-12 col-md-4">
-        <form id="start-game-form">
-          <div class="form-group">
-            <label for="game-words-count">Number of words in the round</label>
-            <input id="game-words-count" class="form-control" required type="number" min="1" max="10" value="1">
-          </div>
-          <div class="row justify-content-center">
-            <button id="start-game" type="submit" class="mbtn">Start a new Round</button>
-          </div>
-        </form>
-      </div>
-    </div>
-    <div class="divider mt-1 mb-1"></div>
-    <div class="row justify-content-center">
-      <div class="preloader-wrapper big active " id="preloader"
-           style="display: none; margin-top: 20%">
-        <div class="spinner-layer spinner-blue">
-          <div class="circle-clipper left">
-            <div class="circle"></div>
-          </div>
-          <div class="gap-patch">
-            <div class="circle"></div>
-          </div>
-          <div class="circle-clipper right">
-            <div class="circle"></div>
-          </div>
         </div>
 
-        <div class="spinner-layer spinner-red">
-          <div class="circle-clipper left">
-            <div class="circle"></div>
-          </div>
-          <div class="gap-patch">
-            <div class="circle"></div>
-          </div>
-          <div class="circle-clipper right">
-            <div class="circle"></div>
-          </div>
-        </div>
+        <div class="divider mt-1 mb-1"></div>
+        <div id="saving-results" style="display: none" class="text-center">Saving results
+            <div class="row justify-content-center">
+                <div class="preloader-wrapper big active " id="saving-preloader">
+                    <div class="spinner-layer spinner-blue">
+                        <div class="circle-clipper left">
+                            <div class="circle"></div>
+                        </div>
+                        <div class="gap-patch">
+                            <div class="circle"></div>
+                        </div>
+                        <div class="circle-clipper right">
+                            <div class="circle"></div>
+                        </div>
+                    </div>
 
-        <div class="spinner-layer spinner-yellow">
-          <div class="circle-clipper left">
-            <div class="circle"></div>
-          </div>
-          <div class="gap-patch">
-            <div class="circle"></div>
-          </div>
-          <div class="circle-clipper right">
-            <div class="circle"></div>
-          </div>
-        </div>
+                    <div class="spinner-layer spinner-red">
+                        <div class="circle-clipper left">
+                            <div class="circle"></div>
+                        </div>
+                        <div class="gap-patch">
+                            <div class="circle"></div>
+                        </div>
+                        <div class="circle-clipper right">
+                            <div class="circle"></div>
+                        </div>
+                    </div>
 
-        <div class="spinner-layer spinner-green">
-          <div class="circle-clipper left">
-            <div class="circle"></div>
-          </div>
-          <div class="gap-patch">
-            <div class="circle"></div>
-          </div>
-          <div class="circle-clipper right">
-            <div class="circle"></div>
-          </div>
+                    <div class="spinner-layer spinner-yellow">
+                        <div class="circle-clipper left">
+                            <div class="circle"></div>
+                        </div>
+                        <div class="gap-patch">
+                            <div class="circle"></div>
+                        </div>
+                        <div class="circle-clipper right">
+                            <div class="circle"></div>
+                        </div>
+                    </div>
+
+                    <div class="spinner-layer spinner-green">
+                        <div class="circle-clipper left">
+                            <div class="circle"></div>
+                        </div>
+                        <div class="gap-patch">
+                            <div class="circle"></div>
+                        </div>
+                        <div class="circle-clipper right">
+                            <div class="circle"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="divider mt-1 mb-1"></div>
         </div>
-      </div>
+        <div id="game-results" style="display: none" class="row justify-content-center">
+            <div class="col">
+                <div class="row justify-content-center mt-2 ">
+                    <div class="preloader-wrapper big active ">
+                        <div class="spinner-layer spinner-blue">
+                            <div class="circle-clipper left">
+                                <div class="circle"></div>
+                            </div>
+                            <div class="gap-patch">
+                                <div class="circle"></div>
+                            </div>
+                            <div class="circle-clipper right">
+                                <div class="circle"></div>
+                            </div>
+                        </div>
+
+                        <div class="spinner-layer spinner-red">
+                            <div class="circle-clipper left">
+                                <div class="circle"></div>
+                            </div>
+                            <div class="gap-patch">
+                                <div class="circle"></div>
+                            </div>
+                            <div class="circle-clipper right">
+                                <div class="circle"></div>
+                            </div>
+                        </div>
+
+                        <div class="spinner-layer spinner-yellow">
+                            <div class="circle-clipper left">
+                                <div class="circle"></div>
+                            </div>
+                            <div class="gap-patch">
+                                <div class="circle"></div>
+                            </div>
+                            <div class="circle-clipper right">
+                                <div class="circle"></div>
+                            </div>
+                        </div>
+
+                        <div class="spinner-layer spinner-green">
+                            <div class="circle-clipper left">
+                                <div class="circle"></div>
+                            </div>
+                            <div class="gap-patch">
+                                <div class="circle"></div>
+                            </div>
+                            <div class="circle-clipper right">
+                                <div class="circle"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="divider mt-1 mb-1"></div>
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-4">
+                <form id="start-game-form">
+                    <div class="form-group">
+                        <label for="game-words-count">Number of words in the round</label>
+                        <input id="game-words-count" class="form-control" required type="number" min="1" max="10"
+                               value="1">
+                    </div>
+                    <div class="row justify-content-center">
+                        <button id="start-game" type="submit" class="mbtn">Start a new Round</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="divider mt-1 mb-1"></div>
+        <div class="row justify-content-center">
+            <div class="preloader-wrapper big active " id="preloader"
+                 style="display: none; margin-top: 20%">
+                <div class="spinner-layer spinner-blue">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="gap-patch">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+
+                <div class="spinner-layer spinner-red">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="gap-patch">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+
+                <div class="spinner-layer spinner-yellow">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="gap-patch">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+
+                <div class="spinner-layer spinner-green">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="gap-patch">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="app">
+
+        </div>
     </div>
-    <div id="app">
-
-    </div>
-  </div>
 
 </div>
 <script src="build.js"></script>
 <script
-  src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-  integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E="
-  crossorigin="anonymous">
+        src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E="
+        crossorigin="anonymous">
 </script>
 <script type="text/javascript" src="nebulas.js"></script>
 
 <script>
 
-  $(window).ready(function () {
+    $(window).ready(function () {
 
 
-    var HttpRequest = require("nebulas").HttpRequest;
-    var Neb = require("nebulas").Neb;
-    var Account = require("nebulas").Account;
-    var Transaction = require("nebulas").Transaction;
-    var Unit = require("nebulas").Unit;
-    var Utils = require("nebulas").Utils;
-    var CryptoUtils = require("nebulas").CryptoUtils;
-    var neb = new Neb();
-    var contractAddress = "n1hoLNqcjt1TM1tRrAGqEJs9NJubPBKeHBU";
-    neb.setRequest(new HttpRequest("https://mainnet.nebulas.io"));
-    var tx, txhash;
+        var HttpRequest = require("nebulas").HttpRequest;
+        var Neb = require("nebulas").Neb;
+        var Account = require("nebulas").Account;
+        var Transaction = require("nebulas").Transaction;
+        var Unit = require("nebulas").Unit;
+        var Utils = require("nebulas").Utils;
+        var CryptoUtils = require("nebulas").CryptoUtils;
+        var neb = new Neb();
+        var contractAddress = "n1hoLNqcjt1TM1tRrAGqEJs9NJubPBKeHBU";
+        neb.setRequest(new HttpRequest("https://mainnet.nebulas.io"));
+        var tx, txhash;
 
-    var $appBlock = $('#app-block');
-    var $loginBlock = $('#login-block');
-    var $loginForm = $('#login-form');
-    // var $loginFile = $('#login-file');
-    var $loginPassword = $('#login-password');
-    var $loginBtn = $('#login-btn');
-    var $loginError = $('#login-error');
-    var $userInfo = $('#user-info');
+        var $appBlock = $('#app-block');
+        var $loginBlock = $('#login-block');
+        var $loginForm = $('#login-form');
+        // var $loginFile = $('#login-file');
+        var $loginPassword = $('#login-password');
+        var $loginBtn = $('#login-btn');
+        var $loginError = $('#login-error');
+        var $userInfo = $('#user-info');
 
-    var $gameResults = $('#game-results');
-    var $savingResults = $('#saving-results');
+        var $gameResults = $('#game-results');
+        var $savingResults = $('#saving-results');
 
-    var $startGame = $('#start-game');
-    var $gameWordsCount = $('#game-words-count');
-    var $startGameForm = $('#start-game-form');
-    var $saveResults = $('#save-results');
-    var $results = $('#results');
-    var $logoutBtn = $('#logout-btn');
-    var $preloader = $('#preloader');
+        var $startGame = $('#start-game');
+        var $gameWordsCount = $('#game-words-count');
+        var $startGameForm = $('#start-game-form');
+        var $saveResults = $('#save-results');
+        var $results = $('#results');
+        var $logoutBtn = $('#logout-btn');
+        var $preloader = $('#preloader');
 
-    var account;
+        var account;
 
-    // function getNonse(address) {
-    //   return neb.api.getAccountState(address).then(function (state) {
-    //       var state = state.result || state;
-    //       if (state.type !== 87) {
-    //         throw  Error("Not an wallet address")
-    //       }
-    //       debugger;
-    //       return parseInt(state.nonce);
-    //     }
-    //   );
-    // }
-    neb.api.getNebState().then(function (data) {
-      console.log(data);
-    })
-    $loginForm.submit(function () {
-        var file = document.getElementById('login-file');
-        var password = $loginPassword.val();
+        // function getNonse(address) {
+        //   return neb.api.getAccountState(address).then(function (state) {
+        //       var state = state.result || state;
+        //       if (state.type !== 87) {
+        //         throw  Error("Not an wallet address")
+        //       }
+        //       debugger;
+        //       return parseInt(state.nonce);
+        //     }
+        //   );
+        // }
+        neb.api.getNebState().then(function (data) {
+            console.log(data);
+        })
+        $loginForm.submit(function () {
+                var file = document.getElementById('login-file');
+                var password = $loginPassword.val();
 
-        if (file.files.length) {
-          var reader = new FileReader();
+                if (file.files.length) {
+                    var reader = new FileReader();
 
-          reader.onload = function (e) {
-            try {
-              try {
-                var key = JSON.parse(e.target.result);
-              }
-              catch (e) {
-                throw  Error("Couldn't parse file. Not a JSON wallet")
-              }
-              var address = key['address'];
-              neb.api.getAccountState(address).then(function (state) {
-                var state = state.result || state;
-                if (state.type !== 87) {
-                  throw  Error("Not an wallet address")
+                    reader.onload = function (e) {
+                        try {
+                            try {
+                                var key = JSON.parse(e.target.result);
+                            }
+                            catch (e) {
+                                throw  Error("Couldn't parse file. Not a JSON wallet")
+                            }
+                            var address = key['address'];
+                            neb.api.getAccountState(address).then(function (state) {
+                                var state = state.result || state;
+                                if (state.type !== 87) {
+                                    throw  Error("Not an wallet address")
+                                }
+                                account = Account.fromAddress(address);
+                                // account = account.fromKey(key, password);
+                                // localStorage.setItem('walletPassword', password);
+                                localStorage.setItem('walletKey', JSON.stringify(key));
+                                localStorage.setItem('walletAddress', address);
+                                checkAuth();
+
+                            }).catch(function (e) {
+                                $loginError.html(e.message);
+                            });
+
+                        }
+                        catch (e) {
+                            $loginError.html(e.message);
+                        }
+                    }
+                    ;
+
+                    reader.readAsBinaryString(file.files[0]);
+                    // neb.api.getAccountState(address).then(function (state) {
+                    //   state = state.result || state;
+                    //   if (state.type !== 87) {
+                    //     throw  Error("Not an wallet address")
+                    //   }
+                    //   localStorage.setItem('walletAddress', address);
+                    //
+                    //   checkAuth();
+                    // }).catch(function (err) {
+                    //   $loginError.html(err.message);
+                    // });
                 }
-                account = Account.fromAddress(address);
-                account = account.fromKey(key, password);
-                localStorage.setItem('walletPassword', password);
-                localStorage.setItem('walletKey', JSON.stringify(key));
-                localStorage.setItem('walletAddress', address);
-                checkAuth();
-
-              }).catch(function (e) {
-                $loginError.html(e.message);
-              });
+                return false;
 
             }
-            catch (e) {
-              $loginError.html(e.message);
-            }
-          }
-          ;
-
-          reader.readAsBinaryString(file.files[0]);
-          // neb.api.getAccountState(address).then(function (state) {
-          //   state = state.result || state;
-          //   if (state.type !== 87) {
-          //     throw  Error("Not an wallet address")
-          //   }
-          //   localStorage.setItem('walletAddress', address);
-          //
-          //   checkAuth();
-          // }).catch(function (err) {
-          //   $loginError.html(err.message);
-          // });
-        }
-        return false;
-
-      }
-    );
-    $logoutBtn.click(function () {
-      localStorage.removeItem('walletAddress');
-      checkAuth();
-    });
-    $startGameForm.submit(function () {
-      vue_app.words = [];
-      $preloader.show();
-      var address = localStorage.getItem('walletAddress');
-      neb.api.call({
-        chainID: 1,
-        from: address,
-        to: contractAddress,
-        value: 0,
-        nonce: 0,
-        gasPrice: 1000000,
-        gasLimit: 2000000,
-        contract: {
-          function: "getWords",
-          args: '["' + $gameWordsCount.val() + '"]'
-        }
-      }).then(function (response) {
-        $preloader.hide();
-        var data = JSON.parse(response.result);
-        var words = data['words'];
-        vue_app.words = words;
-      });
-      return false;
-    });
-
-    function sendResults(val1, val2) {
-      console.log(val1, val2)
-    }
-
-    function checkSaveResults(txhash, inter) {
-
-
-    }
-
-    // TODO style game results, add normal words, add instructions
-
-    $(document).on('click', "#save-results", function () {
-      $('#save-results').hide();
-      $startGame.hide();
-      var totalWords = $('#results').data('total-words');
-      var correctWords = $('#results').data('correct-words');
-      var forgottenWords = $('#results').data('forgotten-words');
-      var averageWatchingTime = $('#results').data('average-watching-time') || 0;
-      var averageStartTypeTime = $('#results').data('average-start-type-time') || 0;
-      var averageTypingTIme = $('#results').data('average-typing-time') || 0;
-      var address = localStorage.getItem('walletAddress');
-      console.log(totalWords, correctWords, forgottenWords, averageTypingTIme, averageStartTypeTime, averageWatchingTime)
-      var key = JSON.parse(localStorage.getItem('walletKey')), password = localStorage.getItem('walletPassword');
-      account = Account.fromAddress(address);
-      account = account.fromKey(key, password);
-      neb.api.getAccountState(address).then(function (state) {
-          var state = state.result || state;
-          $savingResults.show()
-          if (state.type !== 87) {
-            throw  Error("Not an wallet address")
-          }
-          var nonce = parseInt(state.nonce) + 1;
-          console.log(nonce)
-          var gTx = new Transaction(1, account, contractAddress, 0, nonce, 1000000, 200000, {
-            function: "addResults",
-            args: `["${correctWords}","${totalWords}","${forgottenWords}","${averageWatchingTime}","${averageStartTypeTime}","${averageTypingTIme}"]`
-          });
-          gTx.signTransaction();
-
-          neb.api
-            .sendRawTransaction(gTx.toProtoString())
-            .then(function (resp) {
-
-              console.log(JSON.stringify(resp));
-              var txhash = resp['txhash'];
-              var inter = setInterval(function () {
-                neb.api.getTransactionReceipt({hash: txhash}).then(function (receipt) {
-                  var status = receipt['status'];
-                  if (parseInt(status) === 1) {
-                    getUserResults();
-                    $savingResults.hide();
-                    $startGame.show();
-                    clearInterval(inter)
-                  }
-                  else if (parseInt(status) === 0) {
-                    console.error("Can't save words");
-                    getUserResults();
-                    $savingResults.hide();
-                    $startGame.show();
-                    clearInterval(inter)
-                  }
-
-
-                });
-              }, 1000,)
-              
-
-            })
-            .catch(function (err) {
-              console.log(err);
-              $('#save-results').show();
-              $startGame.show();
+        );
+        $logoutBtn.click(function () {
+            localStorage.removeItem('walletAddress');
+            checkAuth();
+        });
+        $startGameForm.submit(function () {
+            vue_app.words = [];
+            $preloader.show();
+            var address = localStorage.getItem('walletAddress');
+            neb.api.call({
+                chainID: 1,
+                from: address,
+                to: contractAddress,
+                value: 0,
+                nonce: 0,
+                gasPrice: 1000000,
+                gasLimit: 2000000,
+                contract: {
+                    function: "getWords",
+                    args: '["' + $gameWordsCount.val() + '"]'
+                }
+            }).then(function (response) {
+                $preloader.hide();
+                var data = JSON.parse(response.result);
+                var words = data['words'];
+                vue_app.words = words;
             });
-          checkAuth();
+            return false;
+        });
+
+        function sendResults(val1, val2) {
+            console.log(val1, val2)
         }
-      );
 
-    });
+        function checkSaveResults(txhash, inter) {
 
-    function stop() {
-      vue_app.words = [];
+
+        }
+
+        $(document).on('click', "#save-results", function () {
+            $('#save-results').hide();
+            $startGame.hide();
+            var totalWords = $('#results').data('total-words');
+            var correctWords = $('#results').data('correct-words');
+            var forgottenWords = $('#results').data('forgotten-words');
+            var averageWatchingTime = $('#results').data('average-watching-time') || 0;
+            var averageStartTypeTime = $('#results').data('average-start-type-time') || 0;
+            var averageTypingTIme = $('#results').data('average-typing-time') || 0;
+            var address = localStorage.getItem('walletAddress');
+            console.log(totalWords, correctWords, forgottenWords, averageTypingTIme, averageStartTypeTime, averageWatchingTime)
+            var key = JSON.parse(localStorage.getItem('walletKey'))
+            var account = Account.fromAddress(address);
+            var break_all = false;
+            while (true) {
+                try {
+                    var password = prompt('Enter your wallet password to make a transaction and save results to blockchain');
+                    if (!password) {
+                        break_all = true;
+                        break;
+                    }
+                    account = account.fromKey(key, password);
+                    break;
+                }
+                catch (e) {
+                    console.log(e)
+                }
+            }
+            if (break_all) {
+                $('#save-results').show();
+                $startGame.show();
+                return;
+            }
+            neb.api.getAccountState(address).then(function (state) {
+                    var state = state.result || state;
+                    $savingResults.show()
+                    if (state.type !== 87) {
+                        throw  Error("Not an wallet address")
+                    }
+                    var nonce = parseInt(state.nonce) + 1;
+                    console.log(nonce)
+                    var gTx = new Transaction(1, account, contractAddress, 0, nonce, 1000000, 200000, {
+                        function: "addResults",
+                        args: `["${correctWords}","${totalWords}","${forgottenWords}","${averageWatchingTime}","${averageStartTypeTime}","${averageTypingTIme}"]`
+                    });
+                    gTx.signTransaction();
+
+                    neb.api
+                        .sendRawTransaction(gTx.toProtoString())
+                        .then(function (resp) {
+
+                            console.log(JSON.stringify(resp));
+                            var txhash = resp['txhash'];
+                            var inter = setInterval(function () {
+                                neb.api.getTransactionReceipt({hash: txhash}).then(function (receipt) {
+                                    var status = receipt['status'];
+                                    if (parseInt(status) === 1) {
+                                        getUserResults();
+                                        $savingResults.hide();
+                                        $startGame.show();
+                                        clearInterval(inter)
+                                    }
+                                    else if (parseInt(status) === 0) {
+                                        console.error("Can't save words");
+                                        getUserResults();
+                                        $savingResults.hide();
+                                        $startGame.show();
+                                        clearInterval(inter)
+                                    }
+
+
+                                });
+                            }, 1000,)
+
+
+                        })
+                        .catch(function (err) {
+                            console.log(err);
+                            $('#save-results').show();
+                            $startGame.show();
+                        });
+                    checkAuth();
+                }
+            );
+
+        });
+
+        function stop() {
+            vue_app.words = [];
+        }
+
+        function getUserResults() {
+            $gameResults.show();
+            var address = localStorage.getItem('walletAddress');
+            neb.api.call({
+                chainID: 1,
+                from: address,
+                to: contractAddress,
+                value: 0,
+                nonce: 0,
+                gasPrice: 1000000,
+                gasLimit: 2000000,
+                contract: {
+                    function: "getUserResults",
+                    args: '["' + $gameWordsCount.val() + '"]'
+                }
+            }).then(function (response) {
+                var data = JSON.parse(response.result);
+                var results = data['userResults'];
+                console.log(results)
+                var totalWords = results['totalWords'];
+                if (totalWords > 0) {
+                    $gameResults.html(
+                        '<p class="col-12 text-center">Total words: ' + totalWords + '</p>' +
+                        '<p class="col-4">Total forgotten words : ' + results['forgottenWords'] + '</p>' +
+                        '<p class="col-4">Total successful words : ' + results['successfulWords'] + '</p>' +
+                        '<p class="col-4">Total unsuccessful words : ' + (totalWords - results['successfulWords'] - results['forgottenWords']) + '</p>' +
+                        '<p class="col-4">Average time before you start typing : ' + parseInt(results['totalStartTypeTime'] / totalWords) + '</p>' +
+                        '<p class="col-4">Average time of typing a word : ' + parseInt(results['totalTypingTime'] / totalWords) + '</p>' +
+                        '<p class="col-4">Average time of word watching : ' + parseInt(results['totalWatchingTime'] / totalWords) + '</p>'
+                    )
+                }
+                else {
+                    $gameResults.html('<div class=""><h3 class="text-center">No results yet</h3></div>')
+                }
+            });
+        };
+
+        function checkAuth() {
+            var wallet_address = localStorage.getItem('walletAddress');
+            if (!wallet_address) {
+                stop();
+                $appBlock.hide();
+                $loginBlock.show();
+            }
+            else {
+                $appBlock.show();
+                $userInfo.html("Hi " + wallet_address);
+                $loginBlock.hide();
+                getUserResults();
+            }
+        }
+
+        checkAuth();
+
+    })
+    ;
+
+    function changeWords() {
+        vue_app.words = ['test', 'test2', 'test3'];
     }
 
-    function getUserResults() {
-      $gameResults.show();
-      var address = localStorage.getItem('walletAddress');
-      neb.api.call({
-        chainID: 1,
-        from: address,
-        to: contractAddress,
-        value: 0,
-        nonce: 0,
-        gasPrice: 1000000,
-        gasLimit: 2000000,
-        contract: {
-          function: "getUserResults",
-          args: '["' + $gameWordsCount.val() + '"]'
-        }
-      }).then(function (response) {
-        var data = JSON.parse(response.result);
-        var results = data['userResults'];
-        console.log(results)
-        var totalWords = results['totalWords'];
-        if (totalWords > 0) {
-          $gameResults.html(
-            '<p class="col-12 text-center">Total words: ' + totalWords + '</p>' +
-            '<p class="col-4">Total forgotten words : ' + results['forgottenWords'] + '</p>' +
-            '<p class="col-4">Total successful words : ' + results['successfulWords'] + '</p>' +
-            '<p class="col-4">Total unsuccessful words : ' + (totalWords - results['successfulWords'] - results['forgottenWords']) + '</p>' +
-            '<p class="col-4">Average time before you start typing : ' + parseInt(results['totalStartTypeTime'] / totalWords) + '</p>' +
-            '<p class="col-4">Average time of typing a word : ' + parseInt(results['totalTypingTime'] / totalWords) + '</p>' +
-            '<p class="col-4">Average time of word watching : ' + parseInt(results['totalWatchingTime'] / totalWords) + '</p>'
-          )
-        }
-        else {
-          $gameResults.html('<div class=""><h3 class="text-center">No results yet</h3></div>')
-        }
-      });
-    };
-
-    function checkAuth() {
-      var wallet_address = localStorage.getItem('walletAddress');
-      if (!wallet_address) {
-        stop();
-        $appBlock.hide();
-        $loginBlock.show();
-      }
-      else {
-        $appBlock.show();
-        $userInfo.html("Hi " + wallet_address);
-        $loginBlock.hide();
-        getUserResults();
-      }
-    }
-
-    checkAuth();
-
-  })
-  ;
-
-  function changeWords() {
-    vue_app.words = ['test', 'test2', 'test3'];
-  }
-
-  $('#inst-btn').click(function () {
-    $(this).toggleClass('active');
-    $('#inst').toggle();
-  })
+    $('#inst-btn').click(function () {
+        $(this).toggleClass('active');
+        $('#inst').toggle();
+    })
 
 </script>
 </body>
